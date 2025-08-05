@@ -16,14 +16,14 @@
 #include "esp_sntp.h"
 
 // =======================================================================
-// --- ユーザー設定 (共通) ---
+// --- ユーザー設定  ---
 // =======================================================================
-const char* ssid = "149BF3AB9D5B-2G";     // ご自宅のWiFi SSID
-const char* password = "tkebvasxfx0t69"; // ご自宅のWiFi パスワード
+const char* ssid = "*************";     // your WiFi SSID
+const char* password = "************"; // your WiFi PASS
 const char* ntpServer = "pool.ntp.org";   // NTPサーバー
 
 // =======================================================================
-// --- NeoPixel LED 設定 (プログラム1より) ---
+// --- NeoPixel LED 設定 ---
 // =======================================================================
 #define LED_PIN    38
 #define LED_COUNT  15
@@ -31,7 +31,7 @@ const char* ntpServer = "pool.ntp.org";   // NTPサーバー
 const uint8_t ledR = 255, ledG = 255, ledB = 255;
 
 // =======================================================================
-// --- ディスプレイ1 (GLASS2) 用 設定 (プログラム1より) ---
+// --- ディスプレイ1 (GLASS2) 用 設定  ---
 // =======================================================================
 const float EARTH_RADIUS_GLASS = 28.0f;
 const float EARTH_AXIAL_TILT_DEG_GLASS = -23.4f;
@@ -51,7 +51,7 @@ struct Vector3D_Glass { float x, y, z; };
 struct Vector2D_Glass { int x, y; float depth; };
 
 // =======================================================================
-// --- ディスプレイ2 (円形LCD) のクラス定義 (プログラム2より) ---
+// --- ディスプレイ2 (円形LCD) のクラス定義  ---
 // =======================================================================
 class LGFX_LCD : public lgfx::LGFX_Device {
     lgfx::Panel_GC9A01  _panel_instance;
@@ -274,7 +274,6 @@ void draw_world_on_glass(const struct tm* utc_time) {
         }
     }
     
-    // ★★★ ここからが、完全に復元された重なり回避ロジックです ★★★
     const int SCREEN_WIDTH = display_glass.width();
     const int SCREEN_HEIGHT = display_glass.height();
     const int MOON_BOX_WIDTH = 32;
