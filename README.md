@@ -3,4 +3,5 @@
 ![](./images/1.jpg)
 
 
-Check out Hackster.io for the full details.
+[See the full project on Hackster.io](https://www.hackster.io/xdfu01/geolunar-chrono-projection-c1bdba)
+
