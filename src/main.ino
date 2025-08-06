@@ -213,7 +213,7 @@ Vector3D_Glass sphericalToCartesian_glass(float lat, float lon, float r) {
     return v;
 }
 
-void getLocalTime(struct tm* timeinfo, const City* city) { // timeinfoから月、日、曜日を取得 // サマータイムロジックで使うため、月は1-12、曜日は0-6(日曜-土曜)に調整
+void getLocalTime(struct tm* timeinfo, const City_Glass* city) { // timeinfoから月、日、曜日を取得 // サマータイムロジックで使うため、月は1-12、曜日は0-6(日曜-土曜)に調整
 
 int currentMonth = timeinfo->tm_mon + 1;
 int currentDay = timeinfo->tm_mday;
@@ -285,7 +285,7 @@ else if (strcmp(city->name, "NewYork") == 0) {
     else if (currentMonth == 11) {
         if ((currentDay <= 7 && currentWeekday == 0) ||
 
-　 (currentDay <= 1 && currentWeekday == 1) || (currentDay <= 2 && currentWeekday == 2) || (currentDay <= 3 && currentWeekday == 3) || (currentDay <= 4 && currentWeekday == 4) || (currentDay <= 5 && currentWeekday == 5) || (currentDay <= 6 && currentWeekday == 6)) { is_ny_dst = true; } }
+ (currentDay <= 1 && currentWeekday == 1) || (currentDay <= 2 && currentWeekday == 2) || (currentDay <= 3 && currentWeekday == 3) || (currentDay <= 4 && currentWeekday == 4) || (currentDay <= 5 && currentWeekday == 5) || (currentDay <= 6 && currentWeekday == 6)) { is_ny_dst = true; } }
 
     // --- オフセット適用 ---
     // 冬時間(EST)はUTC-5、夏時間(EDT)はUTC-4
@@ -360,7 +360,7 @@ void draw_world_on_glass(const struct tm* utc_time) {
         Vector3D_Glass p3d = sphericalToCartesian_glass(city.lat, city.lon, EARTH_RADIUS_GLASS);
         Vector2D_Glass p2d = project_glass(p3d, rot_rad, tilt_rad, vx_rad, vy_rad);
         struct tm local_tm; memcpy(&local_tm, utc_time, sizeof(struct tm));
-        getLocalTime_for_cities(&local_tm, &city);
+        getLocalTime(&local_tm, &city);
         
         canvas_glass.setFont(&fonts::TomThumb);
         int city_w = canvas_glass.textWidth(city.name), city_h = canvas_glass.fontHeight();
